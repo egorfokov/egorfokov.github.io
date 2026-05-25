@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<title>Fokov Yehor — Crimson</title>
+<style>
+  html, body { margin: 0; padding: 0; min-height: 100%; background: #050505; font-family: -apple-system, "Inter Tight", system-ui, sans-serif; color: #F5F1EC; }
+  #root { min-height: 100vh; }
+  .device-scroll::-webkit-scrollbar { width: 0; height: 0; }
+  .device-scroll { scrollbar-width: none; }
+
+  /* Mobile full-screen */
+  @media (max-width: 600px) {
+    html, body { background: #0A0A0A; overflow-x: hidden; }
+    #root { min-height: 100dvh; }
+    .stage {
+      min-height: 100dvh !important;
+      padding: 0 !important;
+      background: #0A0A0A !important;
+      display: block !important;
+    }
+    .stage::before { display: none; }
+    .stage-sidebar, .stage-rside { display: none !important; }
+    .mobile-full {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-height: 100dvh;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+      padding-left: env(safe-area-inset-left, 0px);
+      padding-right: env(safe-area-inset-right, 0px);
+    }
+  }
+
+  .stage {
+    min-height: 100vh;
+    display: flex; align-items: flex-start; justify-content: center;
+    padding: 40px 20px 80px;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(230,57,70,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(230,57,70,0.08) 0%, transparent 50%),
+      #050505;
+    overflow: hidden;
+    position: relative;
+  }
+  .stage::before {
+    content:''; position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(245,241,236,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,241,236,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+  .stage-sidebar {
+    position: absolute; top: 40px; left: 40px; max-width: 280px;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: 0.04em;
+    color: rgba(245,241,236,0.5);
+    line-height: 1.6;
+  }
+  .stage-sidebar .accent { color: #E63946; }
+  .stage-sidebar h1 {
+    font-family: "Anton", Impact, sans-serif;
+    font-size: 32px; letter-spacing: -0.01em; line-height: 0.9;
+    margin: 0 0 12px; color: #F5F1EC; text-transform: uppercase;
+  }
+  .stage-rside {
+    position: absolute; top: 40px; right: 40px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: 0.18em;
+    color: rgba(245,241,236,0.5); text-align: right;
+  }
+  @media (max-width: 1100px) {
+    .stage-sidebar, .stage-rside { display: none; }
+    .stage { padding: 20px 0 40px; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+
+<script src="content.js"></script>
+<script src="data.js"></script>
+<script type="text/babel" src="ios-frame.jsx"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="atoms.jsx"></script>
+<script type="text/babel" src="hero.jsx"></script>
+<script type="text/babel" src="career.jsx"></script>
+<script type="text/babel" src="massage.jsx"></script>
+<script type="text/babel" src="training.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
+<script type="text/babel" src="voices-faq-contact.jsx"></script>
+
+<script type="text/babel">
+  const { useState } = React;
+
+  const isMobile = window.__IS_NATIVE__ === true ||
+    window.matchMedia('(max-width: 600px)').matches ||
+    /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+  const TWEAK_DEFAULTS = {
+    "accent": "#E63946",
+    "frame": !isMobile,
+    "fullBleed": isMobile
+  };
+
+  function CrimsonPage() {
+    const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+    const theme = useCrimsonTheme(t.accent);
+
+    const accentPalette = ['#E63946', '#FF3D00', '#D4A017', '#8B5CF6', '#F5F1EC'];
+
+    const content = (
+      <div className="cr-fade-in" style={{ background: theme.BG, color: theme.TEXT, fontFamily: theme.fontUI, paddingBottom: 50 }}>
+        <CrimsonGlobalStyles accent={theme.ACCENT} />
+        <CrimsonHero theme={theme} />
+        <CrimsonCareer theme={theme} />
+        <CrimsonMassage theme={theme} />
+        <CrimsonTraining theme={theme} />
+        <CrimsonApp theme={theme} />
+        <CrimsonVoices theme={theme} />
+        <CrimsonFAQ theme={theme} />
+        <CrimsonContact theme={theme} />
+      </div>
+    );
+
+    return (
+      <>
+        <div className="stage">
+          <div className="stage-sidebar">
+            <div><span className="accent">●</span> FOKOV / CRIMSON</div>
+            <div style={{ marginTop: 30 }}>
+              <h1>Сайт-<br/>прокладка.<br/><span className="accent">Live.</span></h1>
+              <div>Откройте на телефоне — макет рассчитан под мобильный.</div>
+              <div style={{ marginTop: 20, color: '#E63946' }}>● Скроль внутри телефона ↓</div>
+            </div>
+          </div>
+
+          <div className="stage-rside">
+            <div>FOKOV YEHOR / 2026</div>
+            <div style={{ marginTop: 8, color: '#E63946' }}>● ONLINE</div>
+            <div style={{ marginTop: 80, transform: 'rotate(90deg)', transformOrigin: 'right center', whiteSpace: 'nowrap' }}>
+              SWIM · GYM · MASSAGE · GYMBRO
+            </div>
+          </div>
+
+          {t.fullBleed ? (
+            <div className={isMobile ? 'mobile-full' : ''} style={{ width: '100%', maxWidth: isMobile ? '100%' : 480, background: theme.BG }}>
+              {content}
+            </div>
+          ) : t.frame ? (
+            <IOSDevice dark={true} width={402} height={874}>
+              <div className="device-scroll" style={{ height: '100%', overflow: 'auto' }}>
+                {content}
+              </div>
+            </IOSDevice>
+          ) : (
+            <div style={{ width: 402, maxHeight: 874, overflow: 'auto', background: theme.BG, borderRadius: 24, boxShadow: '0 30px 80px rgba(0,0,0,0.5)' }} className="device-scroll">
+              {content}
+            </div>
+          )}
+        </div>
+
+        {!isMobile && (
+          <TweaksPanel>
+            <TweakSection label="Акцент" />
+            <TweakColor
+              label="Цвет"
+              value={t.accent}
+              onChange={(v) => setTweak('accent', v)}
+              options={accentPalette}
+            />
+            <TweakSection label="Формат" />
+            <TweakToggle
+              label="iPhone-рамка"
+              value={t.frame}
+              onChange={(v) => setTweak({ frame: v, fullBleed: v ? false : t.fullBleed })}
+            />
+            <TweakToggle
+              label="Во всю ширину"
+              value={t.fullBleed}
+              onChange={(v) => setTweak({ fullBleed: v, frame: v ? false : t.frame })}
+            />
+          </TweaksPanel>
+        )}
+      </>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('root')).render(<CrimsonPage />);
+</script>
+</body>
+</html>
