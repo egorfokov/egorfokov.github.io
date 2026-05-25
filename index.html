@@ -3717,5 +3717,467 @@ function CrimsonPage() {
 ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(CrimsonPage, null));
 
 </script>
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   fokovSite — Premium Animations
+   Variant A: DRIFT  — Apple/Linear style, smooth fog reveals
+   Variant B: BLADE  — Luxury agency, cinematic, aggressive
+   Toggle: floating ✦ button bottom-left
+═══════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  /* ── State ─────────────────────────────────── */
+  let variant = localStorage.getItem('fk-anim') || 'A';
+  let initialized = false;
+
+  /* ── CSS ───────────────────────────────────── */
+  const style = document.createElement('style');
+  style.id = 'fk-anim-css';
+  document.head.appendChild(style);
+
+  function buildCSS(v) {
+    const ACCENT = '#E63946';
+    if (v === 'A') return `
+      /* ─── DRIFT — smooth, clean ─────────────── */
+      .fk-hidden { opacity: 0; transform: translateY(44px); will-change: opacity, transform; }
+      .fk-hidden-left { opacity: 0; transform: translateX(-40px); will-change: opacity, transform; }
+      .fk-hidden-scale { opacity: 0; transform: scale(0.92); will-change: opacity, transform; }
+
+      .fk-in {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1),
+                    transform 0.75s cubic-bezier(0.22,1,0.36,1);
+      }
+
+      /* stagger children */
+      .fk-stagger > *:nth-child(1) { transition-delay: 0ms !important; }
+      .fk-stagger > *:nth-child(2) { transition-delay: 90ms !important; }
+      .fk-stagger > *:nth-child(3) { transition-delay: 180ms !important; }
+      .fk-stagger > *:nth-child(4) { transition-delay: 270ms !important; }
+      .fk-stagger > *:nth-child(5) { transition-delay: 360ms !important; }
+      .fk-stagger > *:nth-child(6) { transition-delay: 450ms !important; }
+
+      /* line draw */
+      .fk-line {
+        position: relative; overflow: hidden;
+      }
+      .fk-line::after {
+        content: ''; position: absolute; bottom: 0; left: 0;
+        height: 1px; width: 100%;
+        background: ${ACCENT};
+        transform: scaleX(0); transform-origin: left;
+        transition: transform 1.1s cubic-bezier(0.22,1,0.36,1);
+      }
+      .fk-line.fk-in::after { transform: scaleX(1); }
+
+      /* number counter */
+      .fk-num { font-variant-numeric: tabular-nums; }
+
+      /* image parallax — A: subtle zoom */
+      .fk-img-wrap { overflow: hidden; }
+      .fk-img-wrap img {
+        transition: transform 8s cubic-bezier(0.22,1,0.36,1);
+        transform: scale(1.08);
+      }
+      .fk-img-wrap.fk-in img { transform: scale(1); }
+
+      /* section head number */
+      .fk-head-num {
+        opacity: 0; transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        transition-delay: 0.1s;
+      }
+      .fk-head-num.fk-in { opacity: 1; transform: none; }
+
+      /* hero words */
+      .fk-word {
+        display: inline-block;
+        opacity: 0; transform: translateY(100%);
+        transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1),
+                    transform 0.6s cubic-bezier(0.22,1,0.36,1);
+      }
+      .fk-word.fk-in { opacity: 1; transform: none; }
+    `;
+
+    /* ─── BLADE ─────────────────────────────── */
+    return `
+      /* chars */
+      .fk-char {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(110%) rotateX(-90deg);
+        transform-origin: bottom center;
+        transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+      }
+      .fk-char.fk-in { opacity: 1; transform: none; }
+
+      /* clip reveal left → right */
+      .fk-clip {
+        clip-path: inset(0 100% 0 0);
+        transition: clip-path 0.8s cubic-bezier(0.76,0,0.24,1);
+      }
+      .fk-clip.fk-in { clip-path: inset(0 0% 0 0); }
+
+      /* slam-up */
+      .fk-hidden {
+        opacity: 0; transform: translateY(60px) skewY(2deg);
+        will-change: opacity, transform;
+      }
+      .fk-hidden-left {
+        opacity: 0; transform: translateX(-60px) skewX(-3deg);
+      }
+      .fk-hidden-scale {
+        opacity: 0; transform: scale(0.88) rotate(-1deg);
+      }
+      .fk-in {
+        opacity: 1 !important; transform: none !important;
+        transition: opacity 0.6s cubic-bezier(0.76,0,0.24,1),
+                    transform 0.7s cubic-bezier(0.34,1.2,0.64,1);
+      }
+
+      /* stagger */
+      .fk-stagger > *:nth-child(1) { transition-delay: 0ms !important; }
+      .fk-stagger > *:nth-child(2) { transition-delay: 70ms !important; }
+      .fk-stagger > *:nth-child(3) { transition-delay: 140ms !important; }
+      .fk-stagger > *:nth-child(4) { transition-delay: 210ms !important; }
+      .fk-stagger > *:nth-child(5) { transition-delay: 280ms !important; }
+      .fk-stagger > *:nth-child(6) { transition-delay: 350ms !important; }
+
+      /* image — parallax aggressive */
+      .fk-img-wrap { overflow: hidden; }
+      .fk-img-wrap img {
+        transform: scale(1.15) translateY(0px);
+        transition: transform 0.1s linear;
+      }
+      .fk-img-wrap.fk-in img { transform: scale(1.12) translateY(0px); }
+
+      /* accent line — BLADE: shoots from center */
+      .fk-line { position: relative; overflow: hidden; }
+      .fk-line::after {
+        content: ''; position: absolute; bottom: 0; left: 50%;
+        height: 1px; width: 0;
+        background: ${ACCENT};
+        transition: width 0.9s cubic-bezier(0.76,0,0.24,1),
+                    left 0.9s cubic-bezier(0.76,0,0.24,1);
+      }
+      .fk-line.fk-in::after { width: 100%; left: 0; }
+
+      .fk-num { font-variant-numeric: tabular-nums; }
+
+      /* hero */
+      .fk-word {
+        display: inline-block;
+        opacity: 0; transform: translateY(120%) skewY(5deg);
+        transition: opacity 0.5s ease,
+                    transform 0.6s cubic-bezier(0.34,1.4,0.64,1);
+        overflow: hidden;
+      }
+      .fk-word.fk-in { opacity: 1; transform: none; }
+    `;
+  }
+
+  /* ── Variant toggle button ─────────────────── */
+  function createToggle() {
+    const old = document.getElementById('fk-toggle');
+    if (old) old.remove();
+
+    const btn = document.createElement('button');
+    btn.id = 'fk-toggle';
+    btn.innerHTML = `<span id="fk-label">${variant === 'A' ? 'A — DRIFT' : 'B — BLADE'}</span>
+      <span style="font-size:18px;margin-left:6px">✦</span>`;
+    btn.title = 'Переключить анимацию';
+    Object.assign(btn.style, {
+      position: 'fixed', bottom: '24px', left: '24px', zIndex: '9999',
+      background: 'rgba(10,10,10,0.85)',
+      border: '1px solid rgba(230,57,70,0.6)',
+      color: '#F5F1EC', padding: '10px 16px',
+      fontFamily: '"JetBrains Mono", monospace', fontSize: '11px',
+      letterSpacing: '0.12em', cursor: 'pointer', borderRadius: '4px',
+      backdropFilter: 'blur(12px)',
+      display: 'flex', alignItems: 'center',
+      transition: 'border-color 0.2s, background 0.2s',
+      boxShadow: '0 4px 24px rgba(0,0,0,0.5)'
+    });
+    btn.onmouseenter = () => btn.style.borderColor = '#E63946';
+    btn.onmouseleave = () => btn.style.borderColor = 'rgba(230,57,70,0.6)';
+    btn.onclick = () => {
+      variant = variant === 'A' ? 'B' : 'A';
+      localStorage.setItem('fk-anim', variant);
+      document.getElementById('fk-label').textContent =
+        variant === 'A' ? 'A — DRIFT' : 'B — BLADE';
+      resetAnimations();
+    };
+    document.body.appendChild(btn);
+  }
+
+  /* ── Observers ─────────────────────────────── */
+  let observers = [];
+
+  function makeObserver(cb, threshold = 0.12) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { cb(e.target); obs.unobserve(e.target); } });
+    }, { threshold });
+    observers.push(obs);
+    return obs;
+  }
+
+  /* ── Number counter ────────────────────────── */
+  function animateNumber(el) {
+    const text = el.textContent.trim();
+    const match = text.match(/^(\d+\.?\d*)(.*)$/);
+    if (!match) return;
+    const target = parseFloat(match[1]);
+    const suffix = match[2];
+    const dur = 1400;
+    const start = performance.now();
+    const raf = (now) => {
+      const p = Math.min((now - start) / dur, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * ease) + suffix;
+      if (p < 1) requestAnimationFrame(raf);
+    };
+    requestAnimationFrame(raf);
+  }
+
+  /* ── Split text into .fk-word spans ──────────*/
+  function splitWords(el) {
+    const html = el.innerHTML;
+    // wrap each word preserving <br> and <span>
+    const parts = html.split(/(\s+|<br\s*\/?>|<span[^>]*>.*?<\/span>)/gi);
+    el.innerHTML = parts.map(p => {
+      if (!p.trim() || p.match(/^[\s]+$/) || p.match(/^<br/i) || p.match(/^<span/i)) return p;
+      return `<span class="fk-word">${p}</span>`;
+    }).join('');
+  }
+
+  /* ── Split text into .fk-char spans ──────────*/
+  function splitChars(el) {
+    const text = el.textContent;
+    el.innerHTML = text.split('').map((c, i) =>
+      c === ' ' ? ' ' : `<span class="fk-char" style="transition-delay:${i * 28}ms">${c}</span>`
+    ).join('');
+  }
+
+  /* ── Parallax (BLADE) ──────────────────────── */
+  function initParallax() {
+    const imgs = document.querySelectorAll('.fk-img-wrap img');
+    window.addEventListener('scroll', () => {
+      imgs.forEach(img => {
+        const rect = img.closest('.fk-img-wrap').getBoundingClientRect();
+        const cy = rect.top + rect.height / 2 - window.innerHeight / 2;
+        const pct = cy / window.innerHeight;
+        img.style.transform = `scale(1.12) translateY(${pct * 40}px)`;
+      });
+    }, { passive: true });
+  }
+
+  /* ── Cleanup ───────────────────────────────── */
+  function resetAnimations() {
+    observers.forEach(o => o.disconnect());
+    observers = [];
+    // remove all fk- classes except fk-img-wrap
+    document.querySelectorAll('[class*="fk-"]').forEach(el => {
+      [...el.classList].filter(c => c.startsWith('fk-') && c !== 'fk-img-wrap')
+        .forEach(c => el.classList.remove(c));
+      el.style.transition = '';
+    });
+    document.querySelectorAll('.fk-word,.fk-char').forEach(el => {
+      const p = el.parentNode;
+      if (p) p.innerHTML = p.innerHTML
+        .replace(/<span class="fk-word"[^>]*>(.*?)<\/span>/g, '$1')
+        .replace(/<span class="fk-char"[^>]*>(.*?)<\/span>/g, '$1');
+    });
+    setTimeout(init, 50);
+  }
+
+  /* ── Main init ─────────────────────────────── */
+  function init() {
+    style.textContent = buildCSS(variant);
+
+    const root = document.getElementById('root');
+    if (!root || !root.children.length) return;
+
+    if (variant === 'A') initDrift();
+    else initBlade();
+
+    createToggle();
+    initialized = true;
+  }
+
+  /* ════════════════════════════════════════════
+     VARIANT A — DRIFT
+  ════════════════════════════════════════════ */
+  function initDrift() {
+    const obs = makeObserver(el => {
+      el.classList.add('fk-in');
+      if (el.dataset.fkNum) animateNumber(el);
+    });
+
+    /* hero heading words */
+    const h1 = document.querySelector('h1');
+    if (h1) {
+      splitWords(h1);
+      h1.querySelectorAll('.fk-word').forEach((w, i) => {
+        w.style.transitionDelay = `${i * 80}ms`;
+        obs.observe(w);
+      });
+    }
+
+    /* section headings h2 */
+    document.querySelectorAll('h2').forEach(el => {
+      el.classList.add('fk-hidden');
+      obs.observe(el);
+    });
+
+    /* images */
+    document.querySelectorAll('img').forEach(img => {
+      const wrap = img.parentElement;
+      if (wrap) {
+        wrap.classList.add('fk-img-wrap');
+        obs.observe(wrap);
+      }
+    });
+
+    /* all divs with padding at section level — generic reveal */
+    const scrollDivs = makeObserver(el => el.classList.add('fk-in'), 0.08);
+    let delay = 0;
+    document.querySelectorAll('[style*="padding: \'0 20px\'"], [style*="padding: 0 20px"]')
+      .forEach(el => {
+        if (el.children.length < 2) return;
+        [...el.children].forEach((child, i) => {
+          child.classList.add('fk-hidden');
+          child.style.transitionDelay = `${i * 80}ms`;
+          scrollDivs.observe(child);
+        });
+      });
+
+    /* stat numbers */
+    document.querySelectorAll('[style*="font-size: 52px"], [style*="font-size: 88px"]')
+      .forEach(el => {
+        if (/^\d/.test(el.textContent.trim())) {
+          el.dataset.fkNum = '1';
+          el.classList.add('fk-num', 'fk-hidden-scale');
+          obs.observe(el);
+        }
+      });
+
+    /* generic elements — fade up */
+    const generic = makeObserver(el => el.classList.add('fk-in'), 0.1);
+    document.querySelectorAll('p, li, button, a').forEach((el, i) => {
+      if (el.closest('.twk-panel')) return;
+      if (el.id === 'fk-toggle') return;
+      el.classList.add('fk-hidden');
+      el.style.transitionDelay = `${Math.min(i % 5, 4) * 60}ms`;
+      generic.observe(el);
+    });
+  }
+
+  /* ════════════════════════════════════════════
+     VARIANT B — BLADE
+  ════════════════════════════════════════════ */
+  function initBlade() {
+    const obs = makeObserver(el => {
+      el.classList.add('fk-in');
+      if (el.dataset.fkNum) animateNumber(el);
+    }, 0.1);
+
+    /* hero h1 — char split */
+    const h1 = document.querySelector('h1');
+    if (h1) {
+      splitChars(h1);
+      h1.querySelectorAll('.fk-char').forEach(c => obs.observe(c));
+    }
+
+    /* section h2 — word split with skew */
+    document.querySelectorAll('h2').forEach(h => {
+      splitWords(h);
+      h.querySelectorAll('.fk-word').forEach((w, i) => {
+        w.style.transitionDelay = `${i * 60}ms`;
+        obs.observe(w);
+      });
+    });
+
+    /* images — parallax */
+    document.querySelectorAll('img').forEach(img => {
+      const wrap = img.parentElement;
+      if (wrap) wrap.classList.add('fk-img-wrap');
+    });
+    initParallax();
+
+    /* stat numbers */
+    document.querySelectorAll('[style*="font-size: 52px"],[style*="font-size: 88px"]')
+      .forEach(el => {
+        if (/^\d/.test(el.textContent.trim())) {
+          el.dataset.fkNum = '1';
+          el.classList.add('fk-num', 'fk-hidden-scale');
+          obs.observe(el);
+        }
+      });
+
+    /* clip reveals for section-head text */
+    document.querySelectorAll('[style*="letter-spacing: 0.2em"],[style*="letter-spacing: \'0.2em\'"]')
+      .forEach(el => {
+        el.classList.add('fk-clip');
+        obs.observe(el);
+      });
+
+    /* generic elements — slam up */
+    const generic = makeObserver(el => el.classList.add('fk-in'), 0.08);
+    document.querySelectorAll('p, li').forEach((el, i) => {
+      if (el.closest('.twk-panel')) return;
+      el.classList.add('fk-hidden');
+      el.style.transitionDelay = `${(i % 4) * 70}ms`;
+      generic.observe(el);
+    });
+
+    /* buttons / links — clip */
+    const btnObs = makeObserver(el => el.classList.add('fk-in'), 0.2);
+    document.querySelectorAll('button, a[style]').forEach((el, i) => {
+      if (el.closest('.twk-panel') || el.id === 'fk-toggle') return;
+      el.classList.add('fk-clip');
+      el.style.transitionDelay = `${i % 3 * 80}ms`;
+      btnObs.observe(el);
+    });
+
+    /* card-like divs — slam in staggered */
+    const cardObs = makeObserver(el => el.classList.add('fk-in'), 0.12);
+    document.querySelectorAll('[style*="border: 1px solid"],[style*="background: rgb(20"],[style*="background: rgb(26"]')
+      .forEach((el, i) => {
+        el.classList.add('fk-hidden');
+        el.style.transitionDelay = `${(i % 5) * 80}ms`;
+        cardObs.observe(el);
+      });
+  }
+
+  /* ── Boot — wait for React to render ──────── */
+  function boot() {
+    const root = document.getElementById('root');
+    if (!root) { setTimeout(boot, 100); return; }
+
+    const mo = new MutationObserver(() => {
+      if (root.children.length > 0) {
+        mo.disconnect();
+        setTimeout(init, 400); // let React finish painting
+      }
+    });
+    mo.observe(root, { childList: true, subtree: false });
+
+    // also try immediately in case already rendered
+    if (root.children.length > 0) {
+      mo.disconnect();
+      setTimeout(init, 400);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+})();
+
+</script>
 </body>
 </html>
