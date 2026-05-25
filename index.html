@@ -3589,102 +3589,131 @@ window.CrimsonContact = CrimsonContact;
 </script>
 
 <script>
-  const { useState } = React;
+const {
+  useState
+} = React;
+const isMobile = window.__IS_NATIVE__ === true || window.matchMedia('(max-width: 600px)').matches || /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+const TWEAK_DEFAULTS = {
+  "accent": "#E63946",
+  "frame": !isMobile,
+  "fullBleed": isMobile
+};
+function CrimsonPage() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const theme = useCrimsonTheme(t.accent);
+  const accentPalette = ['#E63946', '#FF3D00', '#D4A017', '#8B5CF6', '#F5F1EC'];
+  const content = /*#__PURE__*/React.createElement("div", {
+    className: "cr-fade-in",
+    style: {
+      background: theme.BG,
+      color: theme.TEXT,
+      fontFamily: theme.fontUI,
+      paddingBottom: 50
+    }
+  }, /*#__PURE__*/React.createElement(CrimsonGlobalStyles, {
+    accent: theme.ACCENT
+  }), /*#__PURE__*/React.createElement(CrimsonHero, {
+    theme: theme
+  }), /*#__PURE__*/React.createElement(CrimsonCareer, {
+    theme: theme
+  }), /*#__PURE__*/React.createElement(CrimsonMassage, {
+    theme: theme
+  }), /*#__PURE__*/React.createElement(CrimsonTraining, {
+    theme: theme
+  }), /*#__PURE__*/React.createElement(CrimsonApp, {
+    theme: theme
+  }), /*#__PURE__*/React.createElement(CrimsonVoices, {
+    theme: theme
+  }), /*#__PURE__*/React.createElement(CrimsonFAQ, {
+    theme: theme
+  }), /*#__PURE__*/React.createElement(CrimsonContact, {
+    theme: theme
+  }));
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    className: "stage"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "stage-sidebar"
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+    className: "accent"
+  }, "\u25CF"), " FOKOV / CRIMSON"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 30
+    }
+  }, /*#__PURE__*/React.createElement("h1", null, "\u0421\u0430\u0439\u0442-", /*#__PURE__*/React.createElement("br", null), "\u043F\u0440\u043E\u043A\u043B\u0430\u0434\u043A\u0430.", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
+    className: "accent"
+  }, "Live.")), /*#__PURE__*/React.createElement("div", null, "\u041E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u043D\u0430 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0435 \u2014 \u043C\u0430\u043A\u0435\u0442 \u0440\u0430\u0441\u0441\u0447\u0438\u0442\u0430\u043D \u043F\u043E\u0434 \u043C\u043E\u0431\u0438\u043B\u044C\u043D\u044B\u0439."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 20,
+      color: '#E63946'
+    }
+  }, "\u25CF \u0421\u043A\u0440\u043E\u043B\u044C \u0432\u043D\u0443\u0442\u0440\u0438 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0430 \u2193"))), /*#__PURE__*/React.createElement("div", {
+    className: "stage-rside"
+  }, /*#__PURE__*/React.createElement("div", null, "FOKOV YEHOR / 2026"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 8,
+      color: '#E63946'
+    }
+  }, "\u25CF ONLINE"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 80,
+      transform: 'rotate(90deg)',
+      transformOrigin: 'right center',
+      whiteSpace: 'nowrap'
+    }
+  }, "SWIM \xB7 GYM \xB7 MASSAGE \xB7 GYMBRO")), t.fullBleed ? /*#__PURE__*/React.createElement("div", {
+    className: isMobile ? 'mobile-full' : '',
+    style: {
+      width: '100%',
+      maxWidth: isMobile ? '100%' : 480,
+      background: theme.BG
+    }
+  }, content) : t.frame ? /*#__PURE__*/React.createElement(IOSDevice, {
+    dark: true,
+    width: 402,
+    height: 874
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "device-scroll",
+    style: {
+      height: '100%',
+      overflow: 'auto'
+    }
+  }, content)) : /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 402,
+      maxHeight: 874,
+      overflow: 'auto',
+      background: theme.BG,
+      borderRadius: 24,
+      boxShadow: '0 30px 80px rgba(0,0,0,0.5)'
+    },
+    className: "device-scroll"
+  }, content)), !isMobile && /*#__PURE__*/React.createElement(TweaksPanel, null, /*#__PURE__*/React.createElement(TweakSection, {
+    label: "\u0410\u043A\u0446\u0435\u043D\u0442"
+  }), /*#__PURE__*/React.createElement(TweakColor, {
+    label: "\u0426\u0432\u0435\u0442",
+    value: t.accent,
+    onChange: v => setTweak('accent', v),
+    options: accentPalette
+  }), /*#__PURE__*/React.createElement(TweakSection, {
+    label: "\u0424\u043E\u0440\u043C\u0430\u0442"
+  }), /*#__PURE__*/React.createElement(TweakToggle, {
+    label: "iPhone-\u0440\u0430\u043C\u043A\u0430",
+    value: t.frame,
+    onChange: v => setTweak({
+      frame: v,
+      fullBleed: v ? false : t.fullBleed
+    })
+  }), /*#__PURE__*/React.createElement(TweakToggle, {
+    label: "\u0412\u043E \u0432\u0441\u044E \u0448\u0438\u0440\u0438\u043D\u0443",
+    value: t.fullBleed,
+    onChange: v => setTweak({
+      fullBleed: v,
+      frame: v ? false : t.frame
+    })
+  })));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(CrimsonPage, null));
 
-  const isMobile = window.__IS_NATIVE__ === true ||
-    window.matchMedia('(max-width: 600px)').matches ||
-    /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-  const TWEAK_DEFAULTS = {
-    "accent": "#E63946",
-    "frame": !isMobile,
-    "fullBleed": isMobile
-  };
-
-  function CrimsonPage() {
-    const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
-    const theme = useCrimsonTheme(t.accent);
-
-    const accentPalette = ['#E63946', '#FF3D00', '#D4A017', '#8B5CF6', '#F5F1EC'];
-
-    const content = (
-      <div className="cr-fade-in" style={{ background: theme.BG, color: theme.TEXT, fontFamily: theme.fontUI, paddingBottom: 50 }}>
-        <CrimsonGlobalStyles accent={theme.ACCENT} />
-        <CrimsonHero theme={theme} />
-        <CrimsonCareer theme={theme} />
-        <CrimsonMassage theme={theme} />
-        <CrimsonTraining theme={theme} />
-        <CrimsonApp theme={theme} />
-        <CrimsonVoices theme={theme} />
-        <CrimsonFAQ theme={theme} />
-        <CrimsonContact theme={theme} />
-      </div>
-    );
-
-    return (
-      <>
-        <div className="stage">
-          <div className="stage-sidebar">
-            <div><span className="accent">●</span> FOKOV / CRIMSON</div>
-            <div style={{ marginTop: 30 }}>
-              <h1>Сайт-<br/>прокладка.<br/><span className="accent">Live.</span></h1>
-              <div>Откройте на телефоне — макет рассчитан под мобильный.</div>
-              <div style={{ marginTop: 20, color: '#E63946' }}>● Скроль внутри телефона ↓</div>
-            </div>
-          </div>
-
-          <div className="stage-rside">
-            <div>FOKOV YEHOR / 2026</div>
-            <div style={{ marginTop: 8, color: '#E63946' }}>● ONLINE</div>
-            <div style={{ marginTop: 80, transform: 'rotate(90deg)', transformOrigin: 'right center', whiteSpace: 'nowrap' }}>
-              SWIM · GYM · MASSAGE · GYMBRO
-            </div>
-          </div>
-
-          {t.fullBleed ? (
-            <div className={isMobile ? 'mobile-full' : ''} style={{ width: '100%', maxWidth: isMobile ? '100%' : 480, background: theme.BG }}>
-              {content}
-            </div>
-          ) : t.frame ? (
-            <IOSDevice dark={true} width={402} height={874}>
-              <div className="device-scroll" style={{ height: '100%', overflow: 'auto' }}>
-                {content}
-              </div>
-            </IOSDevice>
-          ) : (
-            <div style={{ width: 402, maxHeight: 874, overflow: 'auto', background: theme.BG, borderRadius: 24, boxShadow: '0 30px 80px rgba(0,0,0,0.5)' }} className="device-scroll">
-              {content}
-            </div>
-          )}
-        </div>
-
-        {!isMobile && (
-          <TweaksPanel>
-            <TweakSection label="Акцент" />
-            <TweakColor
-              label="Цвет"
-              value={t.accent}
-              onChange={(v) => setTweak('accent', v)}
-              options={accentPalette}
-            />
-            <TweakSection label="Формат" />
-            <TweakToggle
-              label="iPhone-рамка"
-              value={t.frame}
-              onChange={(v) => setTweak({ frame: v, fullBleed: v ? false : t.fullBleed })}
-            />
-            <TweakToggle
-              label="Во всю ширину"
-              value={t.fullBleed}
-              onChange={(v) => setTweak({ fullBleed: v, frame: v ? false : t.frame })}
-            />
-          </TweaksPanel>
-        )}
-      </>
-    );
-  }
-
-  ReactDOM.createRoot(document.getElementById('root')).render(<CrimsonPage />);
 </script>
 </body>
 </html>
