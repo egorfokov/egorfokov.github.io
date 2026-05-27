@@ -2420,6 +2420,7 @@ function CrimsonMassage({
       color: ACCENT
     }
   }, "STUDIO \xB7 60\u201390 MIN")), /*#__PURE__*/React.createElement("div", {
+    className: 'ms-list',
     style: {
       display: 'flex',
       flexDirection: 'column',
@@ -2500,7 +2501,13 @@ function CrimsonMassage({
         letterSpacing: '0.02em'
       }
     }, m.price))));
-  )), /*#__PURE__*/React.createElement("div", {
+  }), /*#__PURE__*/React.createElement("button", {
+    className: 'ms-list-btn',
+    onClick: function() {
+      var list = document.querySelector('.ms-list');
+      if (list) { list.classList.add('ms-open'); }
+    }
+  }, "ЕЩЁ \xB7 ВСЕ СЕАНСЫ  ↓")), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 14,
       padding: 16,
@@ -3588,8 +3595,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.c
   style.textContent = `
     /* ── Massage expand ── */
     .ms-extra { display: none !important; }
-    .ms-list-open .ms-extra { display: block !important; }
-    #ms-more-btn {
+    .ms-list.ms-open .ms-extra { display: block !important; }
+    .ms-list-btn {
       margin-top: 8px;
       width: 100%;
       background: transparent;
@@ -3599,12 +3606,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.c
       font-size: 11px;
       letter-spacing: 0.18em;
       padding: 14px 0;
-      cursor: pointer !important;
+      cursor: pointer;
       text-transform: uppercase;
       display: block;
-      pointer-events: auto !important;
     }
-    #ms-more-btn:active { opacity: 0.7; }
+    .ms-list.ms-open .ms-list-btn { display: none !important; }
+    .ms-list-btn:active { opacity: 0.7; }
 
     .fk-hidden {
       opacity: 0;
@@ -3762,44 +3769,21 @@ ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.c
     const genericObs = makeObs(el => el.classList.add('fk-in'), 0.08);
     document.querySelectorAll('p, li, button, a[style]').forEach((el, i) => {
       if (el.closest('.twk-panel')) return;
-      if (el.id === 'ms-more-btn') return; /* skip our custom button */
+      if (el.classList.contains('ms-list-btn')) return; /* skip massage expand button */
       el.classList.add('fk-hidden');
       el.style.transitionDelay = `${(i % 5) * 55}ms`;
       genericObs.observe(el);
     });
   }
 
-  /* ── Massage "Show more" button ── */
-  function initMassageMore() {
-    if (document.getElementById('ms-more-btn')) return; /* already done */
-    const firstExtra = document.querySelector('.ms-extra');
-    if (!firstExtra) return;
-    const list = firstExtra.parentElement;
-    if (!list) return;
-
-    const btn = document.createElement('button');
-    btn.id = 'ms-more-btn';
-    btn.textContent = 'ЕЩЁ · ВСЕ СЕАНСЫ  ↓';
-    /* click via event delegation on document — most reliable */
-    list.appendChild(btn);
-  }
-
-  /* delegated click — fires even if btn was replaced */
-  document.addEventListener('click', function(e) {
-    if (e.target && e.target.id === 'ms-more-btn') {
-      var list = e.target.parentElement;
-      if (list) list.classList.add('ms-list-open');
-      e.target.remove();
-    }
-  }, true); /* capture phase — fires before anything else */
 
   /* ── Boot (wait for React to render) ──────── */
   function boot() {
     const root = document.getElementById('root');
     if (!root) { setTimeout(boot, 100); return; }
-    if (root.children.length > 0) { setTimeout(function() { init(); initMassageMore(); }, 600); return; }
+    if (root.children.length > 0) { setTimeout(init, 500); return; }
     const mo = new MutationObserver(() => {
-      if (root.children.length > 0) { mo.disconnect(); setTimeout(function() { init(); initMassageMore(); }, 600); }
+      if (root.children.length > 0) { mo.disconnect(); setTimeout(init, 500); }
     });
     mo.observe(root, { childList: true });
   }
