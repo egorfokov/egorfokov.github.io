@@ -2356,6 +2356,7 @@ function CrimsonMassage({
     fontMono
   } = theme;
   const [active, setActive] = React.useState(0);
+  React.useEffect(function() { window.__initMassageMore && window.__initMassageMore(); }, []);
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(CrSectionHead, {
     no: "02",
     title: "MASSAGE \xB7 \u041F\u0420\u0410\u0419\u0421",
@@ -2429,8 +2430,7 @@ function CrimsonMassage({
     const isActive = active === i;
     return /*#__PURE__*/React.createElement("div", {
       key: i,
-      id: i >= 2 ? `ms-extra-${i}` : undefined,
-      style: i >= 2 ? { display: 'none' } : undefined
+      className: i >= 2 ? 'ms-extra' : 'ms-visible'
     }, /*#__PURE__*/React.createElement("div", {
       onClick: () => setActive(i),
       style: {
@@ -2501,33 +2501,7 @@ function CrimsonMassage({
         letterSpacing: '0.02em'
       }
     }, m.price))));
-  }), /*#__PURE__*/React.createElement("button", {
-    id: "ms-more-btn",
-    onClick: function() {
-      ['ms-extra-2','ms-extra-3','ms-extra-4'].forEach(function(id) {
-        var el = document.getElementById(id);
-        if (el) el.style.display = 'block';
-      });
-      document.getElementById('ms-more-btn').style.display = 'none';
-    },
-    style: {
-      marginTop: 8,
-      width: '100%',
-      background: 'transparent',
-      border: `1px solid ${LINE}`,
-      color: ACCENT,
-      fontFamily: fontMono,
-      fontSize: 11,
-      letterSpacing: '0.18em',
-      padding: '14px 0',
-      cursor: 'pointer',
-      textTransform: 'uppercase',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: 10
-    }
-  }, "ЕЩЁ · ВСЕ СЕАНСЫ ", /*#__PURE__*/React.createElement("span", {style:{fontSize:16}}, "↓"))), /*#__PURE__*/React.createElement("div", {
+  )), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 14,
       padding: 16,
@@ -3769,19 +3743,68 @@ ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.c
     const genericObs = makeObs(el => el.classList.add('fk-in'), 0.08);
     document.querySelectorAll('p, li, button, a[style]').forEach((el, i) => {
       if (el.closest('.twk-panel')) return;
+      if (el.id === 'ms-more-btn') return; /* skip our custom button */
       el.classList.add('fk-hidden');
       el.style.transitionDelay = `${(i % 5) * 55}ms`;
       genericObs.observe(el);
     });
   }
 
+  /* ── Massage "Show more" button (injected after React renders) ── */
+  function initMassageMore() {
+    /* find the flex container that holds .ms-extra items */
+    const extras = document.querySelectorAll('.ms-extra');
+    if (!extras.length) return;
+
+    /* hide extra items */
+    extras.forEach(el => { el.style.display = 'none'; });
+
+    /* find parent container to append button */
+    const container = extras[0].parentElement;
+    if (!container) return;
+
+    /* remove old button if re-called */
+    const old = document.getElementById('ms-more-btn');
+    if (old) old.remove();
+
+    /* create plain DOM button — no React, no fk-hidden */
+    const btn = document.createElement('button');
+    btn.id = 'ms-more-btn';
+    btn.textContent = 'ЕЩЁ · ВСЕ СЕАНСЫ  ↓';
+    Object.assign(btn.style, {
+      marginTop: '8px',
+      width: '100%',
+      background: 'transparent',
+      border: '1px solid rgba(245,241,236,0.15)',
+      color: '#E63946',
+      fontFamily: '"JetBrains Mono", monospace',
+      fontSize: '11px',
+      letterSpacing: '0.18em',
+      padding: '14px 0',
+      cursor: 'pointer',
+      textTransform: 'uppercase',
+      display: 'block',
+      zIndex: '10',
+      position: 'relative'
+    });
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      extras.forEach(el => { el.style.display = 'block'; });
+      btn.remove();
+    });
+    container.appendChild(btn);
+  }
+
+  /* expose so React useEffect can call after each render */
+  window.__initMassageMore = initMassageMore;
+
   /* ── Boot (wait for React to render) ──────── */
   function boot() {
     const root = document.getElementById('root');
     if (!root) { setTimeout(boot, 100); return; }
-    if (root.children.length > 0) { setTimeout(init, 500); return; }
+    if (root.children.length > 0) { setTimeout(function() { init(); initMassageMore(); }, 500); return; }
     const mo = new MutationObserver(() => {
-      if (root.children.length > 0) { mo.disconnect(); setTimeout(init, 500); }
+      if (root.children.length > 0) { mo.disconnect(); setTimeout(function() { init(); initMassageMore(); }, 500); }
     });
     mo.observe(root, { childList: true });
   }
