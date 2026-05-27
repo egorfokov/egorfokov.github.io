@@ -91,13 +91,13 @@
 window.FOKOV_CONTENT = {
   name: 'Fokov Yehor',
   nameRu: 'Егор Фоков',
-  tagline: 'Массажист.Тренер по плаванию и фитнесу. Создатель GymBro.',
+  tagline: 'Массажист. Персональный тренер. Создатель GymBro.',
   taglineShort: 'Тренер. Массажист. Автор GymBro.',
   city: 'Днепр',
   years: '23',
 
   career: [
-    { tag: 'MS', label: 'Мастер спорта', sub: 'плавание' },
+    { tag: 'MS', label: 'Мастер спорта', sub: 'фитнес и спорт' },
     { tag: 'KMS', label: 'Кандидат в мастера', sub: 'триатлон' },
     { tag: 'MA', label: 'Магистр', sub: 'физвоспитание и спорт' },
     { tag: '17+', label: 'Лет в спорте', sub: 'действующая практика' },
@@ -113,16 +113,16 @@ window.FOKOV_CONTENT = {
 
   training: [
     {
-      place: 'Бассейн',
-      en: 'Pool',
-      bullets: ['Постановка техники с нуля', 'Скорость и выносливость', 'Работа дыхания и старта', 'Подготовка к соревнованиям'],
-      img: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=1200&q=80&auto=format&fit=crop',
-    },
-    {
       place: 'Зал',
       en: 'Gym',
       bullets: ['Силовые программы и рельеф', 'Реабилитация после травм', 'Функциональный тренинг', 'Контроль через GymBro'],
       img: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&q=80&auto=format&fit=crop',
+    },
+    {
+      place: 'Массаж',
+      en: 'Massage',
+      bullets: ['Спортивный и лимфодренаж', 'Блейды (IASTM) — фасции и триггеры', 'Восстановление после нагрузок', 'Выезд или своя студия'],
+      img: 'https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=1200&q=80&auto=format&fit=crop',
     },
   ],
 
@@ -138,7 +138,7 @@ window.FOKOV_CONTENT = {
   },
 
   reviews: [
-    { name: 'Анна К.', tag: 'Триатлон', text: 'За полгода с Егором проплыла свой первый бассейн. Техника стала экономичной, в ноги ушло то, что забирала вода.' },
+    { name: 'Анна К.', tag: 'Персональные', text: 'За полгода результат в зале превзошёл все ожидания. Программа выстроена грамотно — прогресс виден каждую неделю.' },
     { name: 'Денис М.', tag: 'Зал + массаж', text: 'Тренировки и восстановление в одной паре рук. GymBro помогает не сливать недели — всё видно.' },
     { name: 'Мария В.', tag: 'Лимфодренаж', text: 'После курса ушли отёки и хроническая усталость в ногах. Возвращаюсь раз в месяц на профилактику.' },
   ],
@@ -181,8 +181,8 @@ window.FOKOV_FULL = {
   ],
 
   timeline: [
-    { y: '2008', t: 'Первые соревнования', d: 'Региональный уровень. Плавание — кроль, спина.' },
-    { y: '2021', t: 'Мастер спорта', d: 'Звание МС по плаванию. Сборная области.' },
+    { y: '2008', t: 'Первые соревнования', d: 'Региональный уровень. Силовые и функциональные дисциплины.' },
+    { y: '2021', t: 'Мастер спорта', d: 'Звание МС. Сборная области.' },
     { y: '2025', t: 'Триатлон / КМС', d: 'Олимпийская дистанция. Спринт.' },
     { y: '2023', t: 'Массажная практика', d: 'Сертификация по спортивному и лимфодренажу.' },
     { y: '2026', t: 'Магистр', d: 'Физическое воспитание и спорт. Научная работа по гипоксии.' },
@@ -199,12 +199,12 @@ window.FOKOV_FULL = {
 
 
   schedule: [
-    { d: 'ПН', am: 'Бассейн', pm: '—', ev: 'Зал' },
-    { d: 'ВТ', am: '—', pm: 'Массаж', ev: 'Бассейн' },
-    { d: 'СР', am: 'Зал', pm: '—', ev: 'Бассейн' },
+    { d: 'ПН', am: 'Зал', pm: '—', ev: 'Зал' },
+    { d: 'ВТ', am: '—', pm: 'Массаж', ev: 'Зал' },
+    { d: 'СР', am: 'Зал', pm: 'Массаж', ev: '—' },
     { d: 'ЧТ', am: '—', pm: 'Массаж', ev: 'Зал' },
-    { d: 'ПТ', am: 'Бассейн', pm: 'Зал', ev: '—' },
-    { d: 'СБ', am: 'Бассейн', pm: '—', ev: '—' },
+    { d: 'ПТ', am: 'Зал', pm: 'Зал', ev: '—' },
+    { d: 'СБ', am: 'Массаж', pm: '—', ev: '—' },
     { d: 'ВС', am: '—', pm: '—', ev: '—' },
   ],
 
@@ -226,9 +226,9 @@ window.FOKOV_FULL = {
   faq: [
     { q: 'С чего начать, если я новичок?', a: 'Пиши в Telegram с короткой вводной: возраст, текущая активность, цель. Подберём формат — обычно начинаем с одной диагностической сессии.' },
     { q: 'Можно ли совмещать массаж и тренировки?', a: 'Не только можно — нужно. Я выстраиваю недельный график так, чтобы массаж работал на восстановление, а не «съедал» нагрузку.' },
-    { q: 'А если я уже занимаюсь у другого тренера?', a: 'Делаю гостевые сессии — техника плавания, разбор силовой программы, или беру восстановительный массаж. Никого «не переманиваю».' },
+    { q: 'А если я уже занимаюсь у другого тренера?', a: 'Делаю гостевые сессии — разбор силовой программы или восстановительный массаж. Никого «не переманиваю».' },
     { q: 'GymBro — это для всех?', a: 'Приложение заточено под клиентов с программой. Если у тебя есть тренер (я или любой другой) — он наполняет план, ты выполняешь и трекаешь.' },
-    { q: 'Где проходят сессии?', a: 'Москва. Бассейн и зал — на нескольких локациях в зависимости от твоего района. Массаж — собственная студия или выезд.' },
+    { q: 'Где проходят сессии?', a: 'Днепр. Зал — на нескольких локациях в зависимости от твоего района. Массаж — собственная студия или выезд.' },
   ],
 };
 
@@ -2617,15 +2617,13 @@ function CrimsonTraining({
     fontMono
   } = theme;
   const slotColor = label => {
-    if (label === 'Бассейн') return ACCENT;
     if (label === 'Зал') return TEXT;
     if (label === 'Массаж') return '#F5C26B';
-    if (label === 'Открытая вода') return '#5DC2FF';
     return MUTED;
   };
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(CrSectionHead, {
     no: "03",
-    title: "TRAINING \xB7 \u0412\u041E\u0414\u0410 \u0418 \u0416\u0415\u041B\u0415\u0417\u041E",
+    title: "TRAINING \xB7 \u0417\u0410\u041B \u0418 \u041C\u0410\u0421\u0421\u0410\u0416",
     theme: theme
   }), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -2639,11 +2637,11 @@ function CrimsonTraining({
       margin: 0,
       textTransform: 'uppercase'
     }
-  }, "\u0412\u043E\u0434\u0430.", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
+  }, "\u0417\u0430\u043B.", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
     style: {
       color: ACCENT
     }
-  }, "\u0416\u0435\u043B\u0435\u0437\u043E.")), /*#__PURE__*/React.createElement("div", {
+  }, "\u041C\u0430\u0441\u0441\u0430\u0436.")), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 20,
       display: 'flex',
@@ -2747,21 +2745,21 @@ function CrimsonTraining({
       border: `1px solid ${LINE}`
     }
   }, [{
-    t: 'Бассейн · 60 мин',
-    p: 'от 4 000 ₽',
-    tag: '1-on-1'
-  }, {
-    t: 'Группа · 60 мин',
-    p: 'от 2 500 ₽',
-    tag: 'до 4 чел'
-  }, {
     t: 'Зал · 60 мин',
     p: 'от 3 500 ₽',
-    tag: 'персонал.'
+    tag: '1-on-1'
   }, {
-    t: 'Абонемент',
+    t: 'Зал · Абонемент',
     p: '−20%',
     tag: '8 трен.'
+  }, {
+    t: 'Массаж · 80 мин',
+    p: 'от 800 грн',
+    tag: 'спорт.'
+  }, {
+    t: 'Массаж · Курс',
+    p: '−15%',
+    tag: '5 сеансов'
   }].map((x, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
     style: {
@@ -3715,649 +3713,6 @@ function CrimsonPage() {
   })));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(CrimsonPage, null));
-
-</script>
-<script>
-/* ═══════════════════════════════════════════════════════════════
-   fokovSite — 4 Premium Animation Variants
-   A: GHOST   — blur + glow reveal, slot-machine numbers
-   B: BLADE   — char split 3D, clip-path, parallax
-   C: STACK   — physical card throws, curtain wipes, spring
-   D: FLOOD   — liquid наплывания, color flood, wave push
-   Toggle: ✦ button bottom-left cycles through all 4
-═══════════════════════════════════════════════════════════════ */
-(function () {
-  'use strict';
-
-  const ACCENT = '#E63946';
-  const VARIANTS = ['A','B','C','D'];
-  const LABELS   = { A:'A — GHOST', B:'B — BLADE', C:'C — STACK', D:'D — FLOOD' };
-
-  let variant = localStorage.getItem('fk-anim') || 'A';
-  let observers = [];
-  let scrollHandlers = [];
-
-  /* ── Style injection ───────────────────────── */
-  let styleEl = document.getElementById('fk-css');
-  if (!styleEl) {
-    styleEl = document.createElement('style');
-    styleEl.id = 'fk-css';
-    document.head.appendChild(styleEl);
-  }
-
-  /* ══════════════════════════════════════════
-     CSS PER VARIANT
-  ══════════════════════════════════════════ */
-  const CSS = {
-
-    /* ── A: GHOST ────────────────────────────── */
-    A: `
-      .fk-hidden {
-        opacity: 0;
-        transform: translateY(32px);
-        filter: blur(12px);
-        will-change: opacity, transform, filter;
-      }
-      .fk-in {
-        opacity: 1 !important;
-        transform: none !important;
-        filter: blur(0) !important;
-        transition:
-          opacity  0.9s cubic-bezier(0.22,1,0.36,1),
-          transform 0.9s cubic-bezier(0.22,1,0.36,1),
-          filter   0.7s cubic-bezier(0.22,1,0.36,1);
-      }
-      .fk-hidden-left {
-        opacity: 0; transform: translateX(-50px); filter: blur(8px);
-      }
-      .fk-hidden-scale {
-        opacity: 0; transform: scale(0.88); filter: blur(10px);
-      }
-      .fk-stagger > * { opacity:0; transform:translateY(24px); filter:blur(8px); }
-      .fk-stagger.fk-in > *:nth-child(1) { transition:all 0.7s cubic-bezier(0.22,1,0.36,1) 0ms; opacity:1;transform:none;filter:blur(0); }
-      .fk-stagger.fk-in > *:nth-child(2) { transition:all 0.7s cubic-bezier(0.22,1,0.36,1) 80ms; opacity:1;transform:none;filter:blur(0); }
-      .fk-stagger.fk-in > *:nth-child(3) { transition:all 0.7s cubic-bezier(0.22,1,0.36,1) 160ms;opacity:1;transform:none;filter:blur(0); }
-      .fk-stagger.fk-in > *:nth-child(4) { transition:all 0.7s cubic-bezier(0.22,1,0.36,1) 240ms;opacity:1;transform:none;filter:blur(0); }
-      .fk-stagger.fk-in > *:nth-child(5) { transition:all 0.7s cubic-bezier(0.22,1,0.36,1) 320ms;opacity:1;transform:none;filter:blur(0); }
-
-      /* glow on words */
-      .fk-word {
-        display:inline-block;
-        opacity:0; transform:translateY(100%);
-        transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1),
-                    transform 0.6s cubic-bezier(0.22,1,0.36,1);
-        text-shadow: 0 0 40px rgba(230,57,70,0);
-      }
-      .fk-word.fk-in {
-        opacity:1; transform:none;
-        text-shadow: 0 0 0 rgba(230,57,70,0);
-        transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1),
-                    text-shadow 0.4s ease;
-      }
-      .fk-img-wrap { overflow:hidden; }
-      .fk-img-wrap img {
-        transform: scale(1.07);
-        filter: brightness(0.7) saturate(0.5);
-        transition: transform 1.4s cubic-bezier(0.22,1,0.36,1),
-                    filter 1.2s ease;
-      }
-      .fk-img-wrap.fk-in img {
-        transform: scale(1);
-        filter: brightness(1) saturate(1);
-      }
-      .fk-num { font-variant-numeric: tabular-nums; }
-    `,
-
-    /* ── B: BLADE ────────────────────────────── */
-    B: `
-      .fk-char {
-        display:inline-block; opacity:0;
-        transform: translateY(110%) rotateX(-90deg);
-        transform-origin: bottom center;
-        transition: opacity 0.4s ease,
-                    transform 0.55s cubic-bezier(0.34,1.56,0.64,1);
-      }
-      .fk-char.fk-in { opacity:1; transform:none; }
-      .fk-clip { clip-path:inset(0 100% 0 0); transition:clip-path 0.85s cubic-bezier(0.76,0,0.24,1); }
-      .fk-clip.fk-in { clip-path:inset(0 0% 0 0); }
-      .fk-hidden { opacity:0; transform:translateY(60px) skewY(2deg); will-change:opacity,transform; }
-      .fk-hidden-left { opacity:0; transform:translateX(-60px) skewX(-3deg); }
-      .fk-hidden-scale { opacity:0; transform:scale(0.88) rotate(-1deg); }
-      .fk-in {
-        opacity:1!important; transform:none!important;
-        transition: opacity 0.6s cubic-bezier(0.76,0,0.24,1),
-                    transform 0.7s cubic-bezier(0.34,1.2,0.64,1);
-      }
-      .fk-stagger > *:nth-child(1){transition-delay:0ms!important}
-      .fk-stagger > *:nth-child(2){transition-delay:70ms!important}
-      .fk-stagger > *:nth-child(3){transition-delay:140ms!important}
-      .fk-stagger > *:nth-child(4){transition-delay:210ms!important}
-      .fk-stagger > *:nth-child(5){transition-delay:280ms!important}
-      .fk-word { display:inline-block; opacity:0; transform:translateY(120%) skewY(5deg);
-        transition:opacity 0.5s ease, transform 0.6s cubic-bezier(0.34,1.4,0.64,1); }
-      .fk-word.fk-in { opacity:1; transform:none; }
-      .fk-img-wrap { overflow:hidden; }
-      .fk-img-wrap img { transform:scale(1.15); transition:transform 0.1s linear; }
-      .fk-num { font-variant-numeric:tabular-nums; }
-    `,
-
-    /* ── C: STACK ────────────────────────────── */
-    C: `
-      /* curtain wipe */
-      .fk-curtain-wrap { position:relative; overflow:hidden; }
-      .fk-curtain {
-        position:absolute; inset:0; z-index:2;
-        background:${ACCENT};
-        transform-origin: left;
-        transition: transform 0.7s cubic-bezier(0.76,0,0.24,1);
-      }
-      .fk-curtain.fk-in { transform: scaleX(0) !important; transform-origin: right !important; }
-
-      /* card throw from left */
-      .fk-card-left {
-        opacity:0;
-        transform: translateX(-120px) rotate(-6deg) scale(0.9);
-        will-change: opacity, transform;
-      }
-      /* card throw from right */
-      .fk-card-right {
-        opacity:0;
-        transform: translateX(120px) rotate(6deg) scale(0.9);
-        will-change: opacity, transform;
-      }
-      /* card from below */
-      .fk-card-up {
-        opacity:0;
-        transform: translateY(80px) rotate(-2deg) scale(0.95);
-        will-change: opacity, transform;
-      }
-      .fk-in {
-        opacity:1 !important;
-        transform: none !important;
-        transition:
-          opacity  0.7s cubic-bezier(0.34,1.3,0.64,1),
-          transform 0.75s cubic-bezier(0.34,1.3,0.64,1);
-      }
-
-      /* big letter slam */
-      .fk-slam {
-        opacity:0;
-        transform: scale(1.6) translateY(-20px);
-        filter: blur(20px);
-      }
-      .fk-slam.fk-in {
-        opacity:1!important; transform:none!important; filter:blur(0)!important;
-        transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.34,1.2,0.64,1),
-                    filter 0.4s ease;
-      }
-
-      /* stagger cards */
-      .fk-deck > *:nth-child(1) { transition-delay:0ms!important; }
-      .fk-deck > *:nth-child(2) { transition-delay:100ms!important; }
-      .fk-deck > *:nth-child(3) { transition-delay:200ms!important; }
-      .fk-deck > *:nth-child(4) { transition-delay:300ms!important; }
-      .fk-deck > *:nth-child(5) { transition-delay:400ms!important; }
-
-      .fk-word { display:inline-block; opacity:0;
-        transform: translateY(100%) rotate(3deg);
-        transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.34,1.4,0.64,1);
-      }
-      .fk-word.fk-in { opacity:1; transform:none; }
-      .fk-img-wrap { overflow:hidden; }
-      .fk-img-wrap img { transform:scale(1.1) translateX(30px);
-        transition:transform 1s cubic-bezier(0.34,1.2,0.64,1); }
-      .fk-img-wrap.fk-in img { transform:scale(1) translateX(0); }
-      .fk-num { font-variant-numeric:tabular-nums; }
-    `,
-
-    /* ── D: FLOOD ────────────────────────────── */
-    D: `
-      /* flood block that rises from bottom */
-      .fk-flood-wrap {
-        position: relative;
-        overflow: hidden;
-      }
-      .fk-flood-wrap::before {
-        content:'';
-        position: absolute;
-        left:0; right:0; bottom:0; height:0;
-        background: ${ACCENT};
-        z-index: 0;
-        transition: height 0.6s cubic-bezier(0.76,0,0.24,1);
-      }
-      .fk-flood-wrap.fk-flood-go::before { height:105%; }
-      .fk-flood-wrap.fk-flood-done::before { top:0; bottom:auto; height:105%; }
-      .fk-flood-wrap > * { position:relative; z-index:1; }
-
-      /* text pushed up by flood */
-      .fk-push {
-        opacity:0;
-        transform: translateY(50px);
-        transition: opacity 0.5s ease 0.3s, transform 0.6s cubic-bezier(0.22,1,0.36,1) 0.3s;
-      }
-      .fk-push.fk-in { opacity:1; transform:none; }
-
-      /* wave reveal: content comes from behind a color wave */
-      .fk-wave {
-        clip-path: inset(100% 0 0 0);
-        transition: clip-path 0.8s cubic-bezier(0.76,0,0.24,1);
-      }
-      .fk-wave.fk-in { clip-path: inset(0% 0 0 0); }
-
-      /* rising block overlay on images */
-      .fk-img-wrap { overflow:hidden; position:relative; }
-      .fk-img-wrap::after {
-        content:'';
-        position:absolute; inset:0;
-        background: ${ACCENT};
-        transform: translateY(0%);
-        transition: transform 0.7s cubic-bezier(0.76,0,0.24,1);
-      }
-      .fk-img-wrap.fk-in::after { transform: translateY(101%); }
-      .fk-img-wrap img { transform:scale(1.06); }
-
-      /* section background flood */
-      .fk-bg-flood {
-        position:relative;
-        overflow:hidden;
-      }
-      .fk-bg-flood::before {
-        content:'';
-        position:absolute; inset:0;
-        background: linear-gradient(to top, rgba(230,57,70,0.06) 0%, transparent 100%);
-        transform: scaleY(0);
-        transform-origin: bottom;
-        transition: transform 1.2s cubic-bezier(0.22,1,0.36,1);
-        z-index:0; pointer-events:none;
-      }
-      .fk-bg-flood.fk-in::before { transform: scaleY(1); }
-
-      /* generic hidden for flood */
-      .fk-hidden {
-        opacity:0; transform:translateY(40px);
-        will-change: opacity, transform;
-      }
-      .fk-in {
-        opacity:1!important; transform:none!important;
-        transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1),
-                    transform 0.8s cubic-bezier(0.22,1,0.36,1);
-      }
-      .fk-word {
-        display:inline-block; overflow:hidden;
-        opacity:0; transform:translateY(100%);
-        transition: opacity 0.5s ease, transform 0.65s cubic-bezier(0.22,1,0.36,1);
-      }
-      .fk-word.fk-in { opacity:1; transform:none; }
-      .fk-num { font-variant-numeric:tabular-nums; }
-
-      .fk-stagger > *:nth-child(1){transition-delay:0ms!important}
-      .fk-stagger > *:nth-child(2){transition-delay:100ms!important}
-      .fk-stagger > *:nth-child(3){transition-delay:200ms!important}
-      .fk-stagger > *:nth-child(4){transition-delay:300ms!important}
-      .fk-stagger > *:nth-child(5){transition-delay:400ms!important}
-    `
-  };
-
-  /* ══════════════════════════════════════════
-     UTILITIES
-  ══════════════════════════════════════════ */
-
-  function makeObs(cb, thr = 0.1) {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { cb(e.target); obs.unobserve(e.target); }});
-    }, { threshold: thr });
-    observers.push(obs);
-    return obs;
-  }
-
-  function splitWords(el) {
-    const raw = el.innerHTML;
-    el.innerHTML = raw.replace(/(<[^>]+>)|([^\s<]+)/g, (m, tag, word) => {
-      if (tag) return tag;
-      return `<span class="fk-word">${word}</span>`;
-    });
-  }
-
-  function splitChars(el) {
-    el.innerHTML = el.textContent.split('').map((c, i) =>
-      c === ' ' ? ' ' :
-      `<span class="fk-char" style="transition-delay:${i*26}ms">${c}</span>`
-    ).join('');
-  }
-
-  /* slot machine number */
-  function slotNumber(el) {
-    const text  = el.textContent.trim();
-    const match = text.match(/^([\d.]+)(.*)/);
-    if (!match) return;
-    const target = parseFloat(match[1]);
-    const suffix = match[2];
-    const chars  = '0123456789';
-    let frame = 0;
-    const totalFrames = 28;
-    const raf = () => {
-      frame++;
-      if (frame < totalFrames * 0.7) {
-        // scramble phase
-        const rand = chars[Math.floor(Math.random()*chars.length)];
-        el.textContent = rand + suffix;
-      } else {
-        // settle phase
-        const p = (frame - totalFrames*0.7) / (totalFrames*0.3);
-        const ease = 1 - Math.pow(1-p,3);
-        el.textContent = Math.round(target * ease) + suffix;
-      }
-      if (frame < totalFrames) requestAnimationFrame(raf);
-      else el.textContent = target + suffix;
-    };
-    requestAnimationFrame(raf);
-  }
-
-  /* counter */
-  function countUp(el) {
-    const text  = el.textContent.trim();
-    const match = text.match(/^([\d.]+)(.*)/);
-    if (!match) return;
-    const target = parseFloat(match[1]);
-    const suffix = match[2];
-    const dur    = 1600;
-    const start  = performance.now();
-    const raf    = now => {
-      const p    = Math.min((now - start) / dur, 1);
-      const ease = 1 - Math.pow(1 - p, 4);
-      el.textContent = Math.round(target * ease) + suffix;
-      if (p < 1) requestAnimationFrame(raf);
-    };
-    requestAnimationFrame(raf);
-  }
-
-  /* ══════════════════════════════════════════
-     VARIANT INITS
-  ══════════════════════════════════════════ */
-
-  /* ── A: GHOST ──────────────────────────────── */
-  function initGhost() {
-    const obs = makeObs(el => {
-      el.classList.add('fk-in');
-      if (el.dataset.fkNum) slotNumber(el);
-    });
-
-    /* h1 words */
-    document.querySelectorAll('h1').forEach(h => {
-      splitWords(h);
-      h.querySelectorAll('.fk-word').forEach((w,i) => {
-        w.style.transitionDelay = `${i*70}ms`;
-        obs.observe(w);
-      });
-    });
-    /* h2 */
-    document.querySelectorAll('h2').forEach(el => {
-      el.classList.add('fk-hidden'); obs.observe(el);
-    });
-    /* images */
-    document.querySelectorAll('img').forEach(img => {
-      img.closest('[style]')?.classList.add('fk-img-wrap');
-      if (img.parentElement) { img.parentElement.classList.add('fk-img-wrap'); obs.observe(img.parentElement); }
-    });
-    /* stat numbers */
-    document.querySelectorAll('[style*="font-size: 52"],[style*="fontSize: 52"]').forEach(el => {
-      if (/^\d/.test(el.textContent.trim())) {
-        el.dataset.fkNum='1'; el.classList.add('fk-num','fk-hidden-scale'); obs.observe(el);
-      }
-    });
-    /* generic */
-    const gobs = makeObs(el => el.classList.add('fk-in'), 0.08);
-    document.querySelectorAll('p,li,a[style],button').forEach((el,i) => {
-      if (el.closest('#fk-toggle,.twk-panel')) return;
-      el.classList.add('fk-hidden');
-      el.style.transitionDelay = `${(i%5)*55}ms`;
-      gobs.observe(el);
-    });
-  }
-
-  /* ── B: BLADE ──────────────────────────────── */
-  function initBlade() {
-    const obs = makeObs(el => { el.classList.add('fk-in'); });
-    /* h1 chars */
-    document.querySelectorAll('h1').forEach(h => {
-      splitChars(h);
-      h.querySelectorAll('.fk-char').forEach(c => obs.observe(c));
-    });
-    /* h2 words */
-    document.querySelectorAll('h2').forEach(h => {
-      splitWords(h);
-      h.querySelectorAll('.fk-word').forEach((w,i) => {
-        w.style.transitionDelay=`${i*55}ms`; obs.observe(w);
-      });
-    });
-    /* clip elements */
-    const cobs = makeObs(el => el.classList.add('fk-in'),0.15);
-    document.querySelectorAll('button,a[style]').forEach((el,i) => {
-      if (el.closest('#fk-toggle,.twk-panel')) return;
-      el.classList.add('fk-clip'); el.style.transitionDelay=`${(i%3)*80}ms`;
-      cobs.observe(el);
-    });
-    /* images parallax */
-    document.querySelectorAll('img').forEach(img => {
-      if (img.parentElement) img.parentElement.classList.add('fk-img-wrap');
-    });
-    window.addEventListener('scroll', () => {
-      document.querySelectorAll('.fk-img-wrap img').forEach(img => {
-        const r = img.closest('.fk-img-wrap').getBoundingClientRect();
-        const p = (r.top + r.height/2 - window.innerHeight/2) / window.innerHeight;
-        img.style.transform = `scale(1.12) translateY(${p*45}px)`;
-      });
-    }, {passive:true});
-    /* generic */
-    const gobs = makeObs(el => el.classList.add('fk-in'),0.08);
-    document.querySelectorAll('p,li').forEach((el,i) => {
-      if (el.closest('#fk-toggle,.twk-panel')) return;
-      el.classList.add('fk-hidden'); el.style.transitionDelay=`${(i%4)*65}ms`;
-      gobs.observe(el);
-    });
-  }
-
-  /* ── C: STACK ──────────────────────────────── */
-  function initStack() {
-    /* h1 words with rotation */
-    document.querySelectorAll('h1').forEach(h => {
-      splitWords(h);
-      h.querySelectorAll('.fk-word').forEach((w,i) => {
-        w.style.transitionDelay=`${i*65}ms`;
-        makeObs(el=>el.classList.add('fk-in'),0.1).observe(w);
-      });
-    });
-    /* h2 slam */
-    const sobs = makeObs(el=>el.classList.add('fk-slam','fk-in'),0.1);
-    document.querySelectorAll('h2').forEach(el => { el.classList.add('fk-slam'); sobs.observe(el); });
-
-    /* cards alternating left/right */
-    const cobs = makeObs(el=>el.classList.add('fk-in'),0.1);
-    let cardIdx = 0;
-    document.querySelectorAll('[style*="border: 1px"],[style*="background: rgb(20"],[style*="background: rgb(26"]').forEach(el => {
-      if (el.closest('#fk-toggle,.twk-panel')) return;
-      const cls = cardIdx%3===0?'fk-card-left': cardIdx%3===1?'fk-card-right':'fk-card-up';
-      el.classList.add(cls);
-      el.style.transitionDelay=`${(cardIdx%4)*90}ms`;
-      cobs.observe(el);
-      cardIdx++;
-    });
-
-    /* curtain wipe on images */
-    document.querySelectorAll('img').forEach(img => {
-      const wrap = img.parentElement; if(!wrap) return;
-      wrap.classList.add('fk-curtain-wrap','fk-img-wrap');
-      const curtain = document.createElement('div');
-      curtain.className='fk-curtain';
-      wrap.appendChild(curtain);
-      const iobs = makeObs(el => {
-        el.classList.add('fk-in');
-        el.querySelectorAll('.fk-curtain').forEach(c => {
-          c.style.transition = 'transform 0.75s cubic-bezier(0.76,0,0.24,1)';
-          c.classList.add('fk-in');
-        });
-      }, 0.15);
-      iobs.observe(wrap);
-    });
-
-    /* p and li - card-up */
-    const pobs = makeObs(el=>el.classList.add('fk-in'),0.08);
-    document.querySelectorAll('p,li').forEach((el,i)=>{
-      if(el.closest('#fk-toggle,.twk-panel')) return;
-      el.classList.add('fk-card-up');
-      el.style.transitionDelay=`${(i%5)*70}ms`;
-      pobs.observe(el);
-    });
-  }
-
-  /* ── D: FLOOD ──────────────────────────────── */
-  function initFlood() {
-    /* h1 words wave */
-    document.querySelectorAll('h1').forEach(h=>{
-      splitWords(h);
-      h.querySelectorAll('.fk-word').forEach((w,i)=>{
-        w.style.transitionDelay=`${i*80}ms`;
-        makeObs(el=>el.classList.add('fk-in'),0.1).observe(w);
-      });
-    });
-
-    /* h2 wave reveal */
-    const h2obs = makeObs(el=>el.classList.add('fk-in'),0.12);
-    document.querySelectorAll('h2').forEach(el=>{
-      el.classList.add('fk-wave'); h2obs.observe(el);
-    });
-
-    /* image flood overlay */
-    document.querySelectorAll('img').forEach(img=>{
-      const wrap = img.parentElement; if(!wrap) return;
-      wrap.classList.add('fk-img-wrap');
-      makeObs(el=>el.classList.add('fk-in'),0.2).observe(wrap);
-    });
-
-    /* sections bg flood */
-    const bgobs = makeObs(el=>el.classList.add('fk-in'),0.05);
-    document.querySelectorAll('[style*="padding: 56px"],[style*="padding: 52px"],[style*="padding: 36px"]').forEach(el=>{
-      el.classList.add('fk-bg-flood'); bgobs.observe(el);
-    });
-
-    /* cards pushed up */
-    const pobs = makeObs(el=>el.classList.add('fk-in'),0.08);
-    document.querySelectorAll('[style*="border: 1px"],[style*="background: rgb(20"],[style*="background: rgb(26"]').forEach((el,i)=>{
-      if(el.closest('#fk-toggle,.twk-panel')) return;
-      el.classList.add('fk-hidden');
-      el.style.transitionDelay=`${(i%5)*90}ms`;
-      pobs.observe(el);
-    });
-
-    /* p and li push */
-    const lobs = makeObs(el=>el.classList.add('fk-in'),0.1);
-    document.querySelectorAll('p,li').forEach((el,i)=>{
-      if(el.closest('#fk-toggle,.twk-panel')) return;
-      el.classList.add('fk-push');
-      el.style.transitionDelay=`${(i%4)*75}ms`;
-      lobs.observe(el);
-    });
-
-    /* scroll-linked accent color flood behind hero */
-    const hero = document.querySelector('[style*="height: 660"]');
-    if (hero) {
-      const floodDiv = document.createElement('div');
-      Object.assign(floodDiv.style,{
-        position:'absolute', bottom:'0', left:'0', right:'0',
-        height:'0', background:`linear-gradient(to top, ${ACCENT}22, transparent)`,
-        transition:'height 0.05s linear', pointerEvents:'none', zIndex:'1'
-      });
-      hero.style.position='relative';
-      hero.appendChild(floodDiv);
-      window.addEventListener('scroll',()=>{
-        const r = hero.getBoundingClientRect();
-        if (r.top < window.innerHeight && r.bottom > 0) {
-          const p = Math.max(0, Math.min(1, -r.top / r.height));
-          floodDiv.style.height = `${p * 100}%`;
-        }
-      },{passive:true});
-    }
-  }
-
-  /* ══════════════════════════════════════════
-     TOGGLE BUTTON
-  ══════════════════════════════════════════ */
-  function createToggle() {
-    let old = document.getElementById('fk-toggle');
-    if (old) old.remove();
-    const btn = document.createElement('button');
-    btn.id = 'fk-toggle';
-    btn.innerHTML = `<span id="fk-lbl">${LABELS[variant]}</span><span style="margin-left:8px;opacity:0.6">↺</span>`;
-    Object.assign(btn.style,{
-      position:'fixed', bottom:'20px', left:'20px', zIndex:'99999',
-      background:'rgba(10,10,10,0.9)', border:`1px solid rgba(230,57,70,0.5)`,
-      color:'#F5F1EC', padding:'10px 18px', borderRadius:'4px',
-      fontFamily:'"JetBrains Mono",monospace', fontSize:'10px',
-      letterSpacing:'0.14em', cursor:'pointer',
-      backdropFilter:'blur(16px)',
-      display:'flex', alignItems:'center',
-      transition:'border-color 0.2s',
-      boxShadow:'0 8px 32px rgba(0,0,0,0.6)'
-    });
-    btn.onmouseenter = ()=> btn.style.borderColor=ACCENT;
-    btn.onmouseleave = ()=> btn.style.borderColor='rgba(230,57,70,0.5)';
-    btn.onclick = ()=>{
-      const idx = VARIANTS.indexOf(variant);
-      variant = VARIANTS[(idx+1) % VARIANTS.length];
-      localStorage.setItem('fk-anim', variant);
-      document.getElementById('fk-lbl').textContent = LABELS[variant];
-      reset();
-    };
-    document.body.appendChild(btn);
-  }
-
-  /* ══════════════════════════════════════════
-     RESET + INIT
-  ══════════════════════════════════════════ */
-  function reset() {
-    observers.forEach(o=>o.disconnect()); observers=[];
-    // remove all fk- classes & inline styles set by us
-    document.querySelectorAll('[class*="fk-"]').forEach(el=>{
-      [...el.classList].filter(c=>c.startsWith('fk-')).forEach(c=>el.classList.remove(c));
-      el.style.transitionDelay='';
-    });
-    // restore split text
-    document.querySelectorAll('.fk-word,.fk-char').forEach(el=>{
-      const p=el.parentNode;
-      if(!p) return;
-      p.innerHTML = p.innerHTML
-        .replace(/<span class="fk-word"[^>]*>(.*?)<\/span>/g,'$1')
-        .replace(/<span class="fk-char"[^>]*>(.*?)<\/span>/g,'$1');
-    });
-    // remove flood divs
-    document.querySelectorAll('.fk-curtain,.fk-flood-div').forEach(e=>e.remove());
-    setTimeout(applyVariant, 60);
-  }
-
-  function applyVariant() {
-    styleEl.textContent = CSS[variant];
-    if      (variant==='A') initGhost();
-    else if (variant==='B') initBlade();
-    else if (variant==='C') initStack();
-    else if (variant==='D') initFlood();
-    createToggle();
-  }
-
-  /* ── Boot ──────────────────────────────────── */
-  function boot() {
-    const root = document.getElementById('root');
-    if (!root) { setTimeout(boot,100); return; }
-    if (root.children.length > 0) { setTimeout(applyVariant, 500); return; }
-    const mo = new MutationObserver(()=>{
-      if (root.children.length > 0) { mo.disconnect(); setTimeout(applyVariant, 500); }
-    });
-    mo.observe(root,{childList:true});
-  }
-
-  document.readyState==='loading'
-    ? document.addEventListener('DOMContentLoaded',boot)
-    : boot();
-})();
 
 </script>
 <script>
