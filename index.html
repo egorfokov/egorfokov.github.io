@@ -118,12 +118,6 @@ window.FOKOV_CONTENT = {
       bullets: ['Силовые программы и рельеф', 'Реабилитация после травм', 'Функциональный тренинг', 'Контроль через GymBro'],
       img: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&q=80&auto=format&fit=crop',
     },
-    {
-      place: 'Массаж',
-      en: 'Massage',
-      bullets: ['Спортивный и лимфодренаж', 'Блейды (IASTM) — фасции и триггеры', 'Восстановление после нагрузок', 'Выезд или своя студия'],
-      img: 'https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=1200&q=80&auto=format&fit=crop',
-    },
   ],
 
   app: {
@@ -1939,11 +1933,7 @@ function CrimsonHero({
       display: 'flex',
       gap: 32
     }
-  }, /*#__PURE__*/React.createElement("span", null, "Swim"), /*#__PURE__*/React.createElement("span", {
-    style: {
-      color: ACCENT
-    }
-  }, "\u2726"), /*#__PURE__*/React.createElement("span", null, "Sport massage"), /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("span", null, "Sport massage"), /*#__PURE__*/React.createElement("span", {
     style: {
       color: ACCENT
     }
@@ -2547,7 +2537,7 @@ function CrimsonMassage({
       marginTop: 6,
       lineHeight: 1.45
     }
-  }, "\u041F\u043E\u0434\u0445\u043E\u0434\u0438\u0442, \u0435\u0441\u043B\u0438 \u0445\u043E\u0447\u0435\u0448\u044C \u0441\u0438\u0441\u0442\u0435\u043C\u043D\u043E \u0440\u0430\u0431\u043E\u0442\u0430\u0442\u044C \u0441 \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u0435\u043C \u0438\u043B\u0438 \u0433\u043E\u0442\u043E\u0432\u0438\u0448\u044C\u0441\u044F \u043A \u0441\u0442\u0430\u0440\u0442\u0443.")), /*#__PURE__*/React.createElement("div", {
+  }, "\u041F\u043E\u0434\u0445\u043E\u0434\u0438\u0442, \u0435\u0441\u043B\u0438 \u0445\u043E\u0447\u0435\u0448\u044C \u0441\u0438\u0441\u0442\u0435\u043C\u043D\u043E \u0440\u0430\u0431\u043E\u0442\u0430\u0442\u044C \u0441 \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u0435\u043C \u0438\u043B\u0438 \u0433\u043E\u0442\u043E\u0432\u0438\u0448\u044C\u0441\u044F \u043A \u0441\u0442\u0430\u0440\u0442\u0443."))), /*#__PURE__*/React.createElement("div", {
     style: {
       marginTop: 36
     }
@@ -2595,12 +2585,12 @@ function CrimsonMassage({
       color: MUTED,
       marginTop: 4
     }
-  }, p.d))))))));
+  }, p.d)))))))));
 }
 window.CrimsonMassage = CrimsonMassage;
 </script>
 <script>
-// Crimson — Training: pool & gym + weekly schedule
+// Crimson — Training: gym + massage
 
 function CrimsonTraining({
   theme
@@ -2617,8 +2607,8 @@ function CrimsonTraining({
     fontMono
   } = theme;
   const slotColor = label => {
-    if (label === 'Зал') return TEXT;
-    if (label === 'Массаж') return '#F5C26B';
+    if (label === '\u0417\u0430\u043B') return TEXT;
+    if (label === '\u041C\u0430\u0441\u0441\u0430\u0436') return '#F5C26B';
     return MUTED;
   };
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(CrSectionHead, {
@@ -2693,7 +2683,7 @@ function CrimsonTraining({
       letterSpacing: '0.14em',
       color: 'rgba(245,241,236,0.7)'
     }
-  }, i === 0 ? 'GROUP · 1-ON-1' : 'PERSONAL'), /*#__PURE__*/React.createElement("div", {
+  }, i === 0 ? 'GROUP \xB7 1-ON-1' : 'PERSONAL'), /*#__PURE__*/React.createElement("div", {
     style: {
       position: 'absolute',
       bottom: 14,
@@ -2745,21 +2735,21 @@ function CrimsonTraining({
       border: `1px solid ${LINE}`
     }
   }, [{
-    t: 'Зал · 60 мин',
-    p: 'от 3 500 ₽',
+    t: '\u0417\u0430\u043B \xB7 60 \u043C\u0438\u043D',
+    p: '\u043E\u0442 3 500 \u20BD',
     tag: '1-on-1'
   }, {
-    t: 'Зал · Абонемент',
-    p: '−20%',
-    tag: '8 трен.'
+    t: '\u0417\u0430\u043B \xB7 \u0410\u0431\u043E\u043D\u0435\u043C\u0435\u043D\u0442',
+    p: '\u221220%',
+    tag: '8 \u0442\u0440\u0435\u043D.'
   }, {
-    t: 'Массаж · 80 мин',
-    p: 'от 800 грн',
-    tag: 'спорт.'
+    t: '\u041C\u0430\u0441\u0441\u0430\u0436 \xB7 80 \u043C\u0438\u043D',
+    p: '\u043E\u0442 800 \u0433\u0440\u043D',
+    tag: '\u0441\u043F\u043E\u0440\u0442.'
   }, {
-    t: 'Массаж · Курс',
-    p: '−15%',
-    tag: '5 сеансов'
+    t: '\u041C\u0430\u0441\u0441\u0430\u0436 \xB7 \u041A\u0443\u0440\u0441',
+    p: '\u221215%',
+    tag: '5 \u0441\u0435\u0430\u043D\u0441\u043E\u0432'
   }].map((x, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
     style: {
@@ -2791,69 +2781,9 @@ function CrimsonTraining({
       color: TEXT,
       marginTop: 6
     }
-  }, x.t)))))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 36
-    }
-  }, /*#__PURE__*/React.createElement(CrEyebrow, {
-    color: ACCENT,
-    mono: fontMono
-  }, "\u0420\u0410\u0421\u041F\u0418\u0421\u0410\u041D\u0418\u0415 \u041D\u0410 \u041D\u0415\u0414\u0415\u041B\u042E"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 14,
-      border: `1px solid ${LINE}`,
-      background: SURFACE
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'grid',
-      gridTemplateColumns: '40px 1fr 1fr 1fr',
-      borderBottom: `1px solid ${LINE}`,
-      padding: '10px 12px'
-    }
-  }, /*#__PURE__*/React.createElement("div", null), ['AM', 'PM', 'EVE'].map((h, i) => /*#__PURE__*/React.createElement("div", {
-    key: i,
-    style: {
-      fontFamily: fontMono,
-      fontSize: 9,
-      color: MUTED,
-      letterSpacing: '0.18em'
-    }
-  }, h))), C.schedule.map((row, i) => /*#__PURE__*/React.createElement("div", {
-    key: i,
-    style: {
-      display: 'grid',
-      gridTemplateColumns: '40px 1fr 1fr 1fr',
-      padding: '12px',
-      borderTop: i === 0 ? 'none' : `1px solid ${LINE}`,
-      alignItems: 'center'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontFamily: fontDisplay,
-      fontSize: 16,
-      color: ACCENT,
-      letterSpacing: '0.02em'
-    }
-  }, row.d), [row.am, row.pm, row.ev].map((slot, j) => /*#__PURE__*/React.createElement("div", {
-    key: j,
-    style: {
-      fontSize: 11,
-      color: slotColor(slot),
-      fontWeight: slot === '—' ? 400 : 600
-    }
-  }, slot)))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '10px 12px',
-      borderTop: `1px solid ${LINE}`,
-      fontSize: 11,
-      color: MUTED,
-      lineHeight: 1.4
-    }
-  }, "\u041E\u043A\u043D\u0430 \u0434\u043B\u044F \u0437\u0430\u043F\u0438\u0441\u0438: ", C.bookingHours.am, " \xB7 ", C.bookingHours.pm, " \xB7 ", C.bookingHours.ev)))));
+  }, x.t))))))));
 }
 window.CrimsonTraining = CrimsonTraining;
-</script>
 <script>
 // Crimson — GymBro app section with phone mockup
 
@@ -3306,12 +3236,13 @@ function CrimsonFAQ({
     theme: theme
   }), /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: '0 20px'
+      padding: '0 20px',
+      overflow: 'hidden'
     }
   }, /*#__PURE__*/React.createElement("h2", {
     style: {
       fontFamily: fontDisplay,
-      fontSize: 52,
+      fontSize: 44,
       lineHeight: 0.92,
       margin: 0,
       textTransform: 'uppercase'
@@ -3409,12 +3340,13 @@ function CrimsonContact({
     theme: theme
   }), /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: '0 20px'
+      padding: '0 20px',
+      overflow: 'hidden'
     }
   }, /*#__PURE__*/React.createElement("h2", {
     style: {
       fontFamily: fontDisplay,
-      fontSize: 76,
+      fontSize: 52,
       lineHeight: 0.86,
       margin: 0,
       textTransform: 'uppercase',
@@ -3440,13 +3372,13 @@ function CrimsonContact({
   }, [{
     l: 'Telegram',
     sub: '@fokovyehor',
-    icon: '✈',
+    icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.883 13.69l-2.938-.918c-.638-.2-.651-.638.136-.943l11.457-4.42c.537-.194 1.006.131.356 1.812z"/></svg>',
     href: C.links.telegram,
     primary: true
   }, {
     l: 'Instagram',
     sub: '@fokovyehor',
-    icon: '◐',
+    icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>',
     href: C.links.instagram
   }].map((x, i) => /*#__PURE__*/React.createElement("a", {
     key: i,
@@ -3480,7 +3412,11 @@ function CrimsonContact({
       justifyContent: 'center',
       fontSize: 18
     }
-  }, x.icon), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
+    dangerouslySetInnerHTML: {
+      __html: x.icon
+    }
+  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 15,
       fontWeight: 700
@@ -3499,89 +3435,7 @@ function CrimsonContact({
       color: x.primary ? '#0A0A0A' : ACCENT,
       fontSize: 20
     }
-  }, "\u2192")))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 22,
-      padding: 16,
-      border: `1px solid ${LINE}`,
-      background: SURFACE
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontFamily: fontMono,
-      fontSize: 10,
-      color: ACCENT,
-      letterSpacing: '0.18em'
-    }
-  }, "\u0427\u0410\u0421\u042B \u0420\u0410\u0411\u041E\u0422\u042B"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 12,
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr 1fr',
-      gap: 12
-    }
-  }, [{
-    l: 'УТРО',
-    v: C.bookingHours.am
-  }, {
-    l: 'ДЕНЬ',
-    v: C.bookingHours.pm
-  }, {
-    l: 'ВЕЧЕР',
-    v: C.bookingHours.ev
-  }].map((h, i) => /*#__PURE__*/React.createElement("div", {
-    key: i
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontFamily: fontMono,
-      fontSize: 9,
-      color: MUTED,
-      letterSpacing: '0.16em'
-    }
-  }, h.l), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontFamily: fontDisplay,
-      fontSize: 18,
-      color: TEXT,
-      marginTop: 4,
-      letterSpacing: '0.02em'
-    }
-  }, h.v))))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 40,
-      paddingTop: 30,
-      borderTop: `1px solid ${LINE}`
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontFamily: fontDisplay,
-      fontSize: 140,
-      color: ACCENT,
-      lineHeight: 0.85,
-      textTransform: 'uppercase',
-      letterSpacing: '-0.04em'
-    }
-  }, "FY"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 14,
-      fontFamily: fontMono,
-      fontSize: 10,
-      color: MUTED,
-      letterSpacing: '0.18em'
-    }
-  }, "FOKOV YEHOR \u2014 TRAINER \xB7 MASSEUR \xB7 FOUNDER")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      marginTop: 30,
-      paddingTop: 18,
-      borderTop: `1px solid ${LINE}`,
-      display: 'flex',
-      justifyContent: 'space-between',
-      fontFamily: fontMono,
-      fontSize: 10,
-      letterSpacing: '0.15em',
-      color: MUTED
-    }
-  }, /*#__PURE__*/React.createElement("span", null, "\xA9 FOKOV / 2026"), /*#__PURE__*/React.createElement("span", null, "ALL RIGHTS"))));
+  }, "\u2192"))))));
 }
 window.CrimsonVoices = CrimsonVoices;
 window.CrimsonFAQ = CrimsonFAQ;
