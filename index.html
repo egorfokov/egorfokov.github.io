@@ -2426,11 +2426,13 @@ function CrimsonMassage({
       flexDirection: 'column',
       gap: 8
     }
-  }, C.massage.filter((_, i) => showAll || i < 2).map((m, i) => {
-    const realIdx = showAll ? i : i;
+  }, C.massage.map((m, i) => {
     const isActive = active === i;
+    const isHidden = !showAll && i >= 2;
     return /*#__PURE__*/React.createElement("div", {
       key: i,
+      style: { display: isHidden ? 'none' : 'block' }
+    }, /*#__PURE__*/React.createElement("div", {
       onClick: () => setActive(i),
       style: {
         background: isActive ? ACCENT : SURFACE,
@@ -2499,7 +2501,7 @@ function CrimsonMassage({
         fontSize: 22,
         letterSpacing: '0.02em'
       }
-    }, m.price)));
+    }, m.price))));
   }), !showAll && /*#__PURE__*/React.createElement("button", {
     onClick: () => setShowAll(true),
     style: {
