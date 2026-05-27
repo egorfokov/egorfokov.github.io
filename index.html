@@ -2356,7 +2356,6 @@ function CrimsonMassage({
     fontMono
   } = theme;
   const [active, setActive] = React.useState(0);
-  React.useEffect(function() { window.__initMassageMore && window.__initMassageMore(); }, []);
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(CrSectionHead, {
     no: "02",
     title: "MASSAGE \xB7 \u041F\u0420\u0410\u0419\u0421",
@@ -3587,6 +3586,26 @@ ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.c
   /* ── Inject CSS ────────────────────────────── */
   const style = document.createElement('style');
   style.textContent = `
+    /* ── Massage expand ── */
+    .ms-extra { display: none !important; }
+    .ms-list-open .ms-extra { display: block !important; }
+    #ms-more-btn {
+      margin-top: 8px;
+      width: 100%;
+      background: transparent;
+      border: 1px solid rgba(245,241,236,0.15);
+      color: #E63946;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      padding: 14px 0;
+      cursor: pointer !important;
+      text-transform: uppercase;
+      display: block;
+      pointer-events: auto !important;
+    }
+    #ms-more-btn:active { opacity: 0.7; }
+
     .fk-hidden {
       opacity: 0;
       transform: translateY(32px);
@@ -3750,61 +3769,37 @@ ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.c
     });
   }
 
-  /* ── Massage "Show more" button (injected after React renders) ── */
+  /* ── Massage "Show more" button ── */
   function initMassageMore() {
-    /* find the flex container that holds .ms-extra items */
-    const extras = document.querySelectorAll('.ms-extra');
-    if (!extras.length) return;
+    if (document.getElementById('ms-more-btn')) return; /* already done */
+    const firstExtra = document.querySelector('.ms-extra');
+    if (!firstExtra) return;
+    const list = firstExtra.parentElement;
+    if (!list) return;
 
-    /* hide extra items */
-    extras.forEach(el => { el.style.display = 'none'; });
-
-    /* find parent container to append button */
-    const container = extras[0].parentElement;
-    if (!container) return;
-
-    /* remove old button if re-called */
-    const old = document.getElementById('ms-more-btn');
-    if (old) old.remove();
-
-    /* create plain DOM button — no React, no fk-hidden */
     const btn = document.createElement('button');
     btn.id = 'ms-more-btn';
     btn.textContent = 'ЕЩЁ · ВСЕ СЕАНСЫ  ↓';
-    Object.assign(btn.style, {
-      marginTop: '8px',
-      width: '100%',
-      background: 'transparent',
-      border: '1px solid rgba(245,241,236,0.15)',
-      color: '#E63946',
-      fontFamily: '"JetBrains Mono", monospace',
-      fontSize: '11px',
-      letterSpacing: '0.18em',
-      padding: '14px 0',
-      cursor: 'pointer',
-      textTransform: 'uppercase',
-      display: 'block',
-      zIndex: '10',
-      position: 'relative'
-    });
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      extras.forEach(el => { el.style.display = 'block'; });
-      btn.remove();
-    });
-    container.appendChild(btn);
+    /* click via event delegation on document — most reliable */
+    list.appendChild(btn);
   }
 
-  /* expose so React useEffect can call after each render */
-  window.__initMassageMore = initMassageMore;
+  /* delegated click — fires even if btn was replaced */
+  document.addEventListener('click', function(e) {
+    if (e.target && e.target.id === 'ms-more-btn') {
+      var list = e.target.parentElement;
+      if (list) list.classList.add('ms-list-open');
+      e.target.remove();
+    }
+  }, true); /* capture phase — fires before anything else */
 
   /* ── Boot (wait for React to render) ──────── */
   function boot() {
     const root = document.getElementById('root');
     if (!root) { setTimeout(boot, 100); return; }
-    if (root.children.length > 0) { setTimeout(function() { init(); initMassageMore(); }, 500); return; }
+    if (root.children.length > 0) { setTimeout(function() { init(); initMassageMore(); }, 600); return; }
     const mo = new MutationObserver(() => {
-      if (root.children.length > 0) { mo.disconnect(); setTimeout(function() { init(); initMassageMore(); }, 500); }
+      if (root.children.length > 0) { mo.disconnect(); setTimeout(function() { init(); initMassageMore(); }, 600); }
     });
     mo.observe(root, { childList: true });
   }
